@@ -1,0 +1,14 @@
+User-Agent: *
+Disallow: /page20892070.html
+Disallow: /page20602085.html
+Disallow: /tilda/form*
+Disallow: /tilda/rec*
+Disallow: /tilda/click*
+Disallow: /tilda/scroll*
+Disallow: /tilda/popup*
+Disallow: /tilda/cart*
+Disallow: /tilda/product*
+Disallow: /tilda/event*
+Disallow:
+
+Sitemap: /sitemap.xml
