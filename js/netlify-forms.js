@@ -1,6 +1,8 @@
-/* Netlify Forms: intercept Tilda XHR and redirect to Netlify */
+/* FormSubmit.co: intercept Tilda XHR and redirect to FormSubmit */
 (function () {
   'use strict';
+
+  var FORMSUBMIT_URL = 'https://formsubmit.co/ajax/oleksandr.kuzmich@gmail.com';
 
   var NativeXHR = window.XMLHttpRequest;
 
@@ -73,19 +75,21 @@
     self.send = function (body) {
       if (!isTilda) return real.send.apply(real, arguments);
 
-      /* find the form being submitted */
-      var form = document.querySelector('form[data-netlify="true"].js-form-proccess');
-      if (!form) form = document.querySelector('form[data-netlify="true"]');
-      var formName = form ? (form.getAttribute('name') || 'contact') : 'contact';
-
-      /* build Netlify-compatible payload */
+      /* build FormSubmit-compatible payload */
       var data = new URLSearchParams(body || '');
-      data.set('form-name', formName);
+      data.set('_subject', 'Нова заявка з сайту Електросервіс');
+      data.set('_captcha', 'false');
+      data.set('_template', 'table');
 
-      fetch('/', {
+      fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json'
+        },
         body: data.toString()
+      }).then(function (res) {
+        return res.json();
       }).then(function () {
         _readyState = 4;
         _status = 200;
@@ -93,7 +97,7 @@
         _responseText = '{"status":"ok"}';
         if (real.onreadystatechange) real.onreadystatechange();
       }).catch(function (err) {
-        console.error('[netlify-forms] submission error:', err);
+        console.error('[formsubmit] submission error:', err);
         /* still show success to user so UX is not broken */
         _readyState = 4;
         _status = 200;
