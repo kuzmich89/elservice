@@ -12,7 +12,7 @@
 
   /* ── Honeypot: inject hidden field into every Tilda form ── */
   function injectHoneypot() {
-    var forms = document.querySelectorAll('form.js-form, form[data-tilda-form]');
+    var forms = document.querySelectorAll('form.t-form, form.js-form-proccess, form.js-form, form[data-tilda-form]');
     forms.forEach(function (form) {
       if (form.querySelector('input[name="_hp_email"]')) return; /* already injected */
       var trap = document.createElement('input');
