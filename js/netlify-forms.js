@@ -191,11 +191,16 @@
       }
 
       /* ── All checks passed: send to FormSubmit ── */
+      /* Strip Tilda's internal metadata — keep only user-entered fields */
+      var TILDA_INTERNAL = ['page', 'referrer', 'userid', 'sessionid', 'user_agent',
+        'user_language', 'projectid', 'pageid', 'pagealias', 'formskey',
+        'ismobile', 'tildastatcode', 'fingerprint', 'tildautm', '_hp_email',
+        'form-name', 'tildaspec'];
+      TILDA_INTERNAL.forEach(function (key) { data.delete(key); });
+
       data.set('_subject', 'Нова заявка з сайту Електросервіс');
       data.set('_captcha', 'false');
       data.set('_template', 'table');
-      /* remove Tilda's honeypot field before sending (keep our custom one removed) */
-      data.delete('_hp_email');
 
       fetch(FORMSUBMIT_URL, {
         method: 'POST',
