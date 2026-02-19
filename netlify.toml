@@ -85,3 +85,64 @@
   from = "/el/"
   to = "/page19446569.html"
   status = 200
+
+# ── English version routing ──
+[[redirects]]
+  from = "/en"
+  to = "/en/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/about"
+  to = "/en/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/about/"
+  to = "/en/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/services"
+  to = "/en/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/services/"
+  to = "/en/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/projects"
+  to = "/en/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/projects/"
+  to = "/en/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/products"
+  to = "/en/products.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/products/"
+  to = "/en/products.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/privacy"
+  to = "/en/privacy.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/privacy/"
+  to = "/en/privacy.html"
+  status = 200
