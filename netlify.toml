@@ -1,7 +1,7 @@
 [build]
-  publish = "."
+  command = "python3 scripts/build.py && python3 scripts/check-site.py"
+  publish = "dist"
 
-# Custom headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -9,84 +9,61 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Cache static assets
 [[headers]]
-  for = "/css/*"
+  for = "/assets/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
-[[headers]]
-  for = "/js/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Redirects — friendly URLs
 [[redirects]]
   from = "/about"
-  to = "/page20388629.html"
+  to = "/about.html"
   status = 200
 
 [[redirects]]
   from = "/about/"
-  to = "/page20388629.html"
-  status = 200
-
-[[redirects]]
-  from = "/services"
-  to = "/page20427338.html"
-  status = 200
-
-[[redirects]]
-  from = "/services/"
-  to = "/page20427338.html"
-  status = 200
-
-[[redirects]]
-  from = "/projects"
-  to = "/page20427944.html"
-  status = 200
-
-[[redirects]]
-  from = "/projects/"
-  to = "/page20427944.html"
+  to = "/about.html"
   status = 200
 
 [[redirects]]
   from = "/products"
-  to = "/page20476942.html"
+  to = "/products.html"
   status = 200
 
 [[redirects]]
   from = "/products/"
-  to = "/page20476942.html"
+  to = "/products.html"
+  status = 200
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/services/"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects/"
+  to = "/projects.html"
   status = 200
 
 [[redirects]]
   from = "/privacy"
-  to = "/page20914744.html"
+  to = "/privacy.html"
   status = 200
 
 [[redirects]]
   from = "/privacy/"
-  to = "/page20914744.html"
+  to = "/privacy.html"
   status = 200
 
-[[redirects]]
-  from = "/el"
-  to = "/page19446569.html"
-  status = 200
-
-[[redirects]]
-  from = "/el/"
-  to = "/page19446569.html"
-  status = 200
-
-# ── English version routing ──
 [[redirects]]
   from = "/en"
   to = "/en/index.html"
@@ -108,6 +85,16 @@
   status = 200
 
 [[redirects]]
+  from = "/en/products"
+  to = "/en/products.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/products/"
+  to = "/en/products.html"
+  status = 200
+
+[[redirects]]
   from = "/en/services"
   to = "/en/services.html"
   status = 200
@@ -125,16 +112,6 @@
 [[redirects]]
   from = "/en/projects/"
   to = "/en/projects.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/products"
-  to = "/en/products.html"
-  status = 200
-
-[[redirects]]
-  from = "/en/products/"
-  to = "/en/products.html"
   status = 200
 
 [[redirects]]
