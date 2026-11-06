@@ -1,0 +1,53 @@
+{
+    admin off
+    auto_https off
+}
+
+:{$PORT:80} {
+    root * /srv
+
+    # ── Rewrites (status 200 — URL stays the same) ──────────────────────────
+    @about    path /about    /about/
+    @products path /products /products/
+    @services path /services /services/
+    @projects path /projects /projects/
+    @privacy  path /privacy  /privacy/
+    @en       path /en       /en/
+    @enAbout    path /en/about    /en/about/
+    @enProducts path /en/products /en/products/
+    @enServices path /en/services /en/services/
+    @enProjects path /en/projects /en/projects/
+    @enPrivacy  path /en/privacy  /en/privacy/
+
+    rewrite @about    /about.html
+    rewrite @products /products.html
+    rewrite @services /services.html
+    rewrite @projects /projects.html
+    rewrite @privacy  /privacy.html
+    rewrite @en       /en/index.html
+    rewrite @enAbout    /en/about.html
+    rewrite @enProducts /en/products.html
+    rewrite @enServices /en/services.html
+    rewrite @enProjects /en/projects.html
+    rewrite @enPrivacy  /en/privacy.html
+
+    # ── Security headers ────────────────────────────────────────────────────
+    header {
+        X-Frame-Options          SAMEORIGIN
+        X-Content-Type-Options   nosniff
+        Referrer-Policy          strict-origin-when-cross-origin
+        -Server
+    }
+
+    header /assets/* {
+        Cache-Control "public, max-age=31536000, immutable"
+    }
+
+    file_server
+
+    # ── Custom 404 ──────────────────────────────────────────────────────────
+    handle_errors {
+        rewrite * /404.html
+        file_server
+    }
+}
